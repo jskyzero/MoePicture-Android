@@ -1,0 +1,14 @@
+# Android-Study
+
+`jskyzero` `2017/08/09`
+
+## 前言
++ Android 开发分为移动设备开发/系统开发/应用程序开发，这里我们主要讨论的是软件上使用系统接口/硬件上基于现有硬件和底层驱动的应用程序开发。
++ 学习前置知识：Java/Linux/数据库/网络协议/服务端经验/XML
++ 运行环境：这就很有意思了好像在Android 5.0及后续Android版本中ART作为正式的运行时库取代了以往的Dalvik虚拟机。具体的[安卓系统结构](https://hit-alibaba.github.io/interview/Android/basic/Android-Arch.html)参考下图
+
+![安卓系统结构](https://raw.githubusercontent.com/HIT-Alibaba/interview/master/img/android-system-architecture.jpg)
+
+## Lab1
++ Activities：应用由装着UI/Code的Activities组成
++ Intents：核心消息系统，包含要执行的动作，可以用于启动Activities或者部件间通信
