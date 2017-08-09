@@ -17,3 +17,5 @@
 + 配置安装Java
 + 配置安装Android Studio
 + 配置安装Android SDK
+
+此处应有一个HelloWorld，但是被我删了，基本上你新建一个空白项目就这种感觉。

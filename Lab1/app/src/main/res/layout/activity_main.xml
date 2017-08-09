@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="200dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:text="@string/app_name"
+            android:textColor="@color/colorAccent"
+            android:background="@color/colorPrimaryDark" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@id/textView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimaryDark"/>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/textView"
+        android:rowCount="5"
+        android:columnCount="5">
+        <Button android:text="1"
+                />
+        <Button android:text="2"
+            android:layout_column="2"
+            android:layout_rowSpan="5"
+            android:layout_gravity="fill"
+            android:gravity="bottom"/>
+    </GridLayout>
+    </RelativeLayout>
+
+</LinearLayout>

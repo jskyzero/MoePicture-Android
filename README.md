@@ -9,6 +9,11 @@
 
 ![安卓系统结构](https://raw.githubusercontent.com/HIT-Alibaba/interview/master/img/android-system-architecture.jpg)
 
-## Lab1
+## Lab0
 + Activities：应用由装着UI/Code的Activities组成
 + Intents：核心消息系统，包含要执行的动作，可以用于启动Activities或者部件间通信
+
+## Lab1
++ View：TextView/RadioButton/Checkbox/Button/List/EditText
++ Layout：Linear/Table/Relative/Frame/Grid
++ 度量单位：sp所为文字大小的单位，dip作为其他元素的单位。
