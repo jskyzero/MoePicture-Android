@@ -21,3 +21,18 @@
 ## Lab2
 + super.setContentView(R.layout.main_activity)
 + super.findViewById(R.id.signin_button)
+```Java
+button.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Toast.makeText(MainActivity.this, "ToastMessage", Toast.LENGTH_SHORT).show()
+    }
+})
+```
+
+```Java
+final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+alertDialog.setTitle("Title").create();
+
+alertDialog.show()
+```
