@@ -17,3 +17,7 @@
 + View：TextView/RadioButton/Checkbox/Button/List/EditText
 + Layout：Linear/Table/Relative/Frame/Grid
 + 度量单位：sp所为文字大小的单位，dip作为其他元素的单位。
+
+## Lab2
++ super.setContentView(R.layout.main_activity)
++ super.findViewById(R.id.signin_button)

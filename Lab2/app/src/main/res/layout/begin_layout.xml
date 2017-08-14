@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 标题 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:text="@string/title"
+        android:textColor="@color/primary_black"
+        android:textSize="@dimen/title_text" />
+
+    <!-- 中间的图片 -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:src="@drawable/sysu" />
+
+    <!-- 表单，设置第二列可拉伸 -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:paddingLeft="@dimen/small_margin"
+        android:paddingRight="@dimen/small_margin"
+        android:stretchColumns="1">
+
+        <!-- 两行之间间距10dp -->
+        <TableRow android:layout_marginBottom="@dimen/small_margin">
+
+            <TextView
+                style="@style/my_edittext_title_style"
+                android:text="@string/username_title" />
+
+            <EditText
+                android:id="@+id/user_name"
+                style="@style/my_edittext_style"
+                android:hint="@string/username_hint" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                style="@style/my_edittext_title_style"
+                android:text="@string/password_title" />
+
+            <EditText
+                android:id="@+id/user_password"
+                style="@style/my_edittext_style"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword"/>
+        </TableRow>
+    </TableLayout>
+
+    <!-- 单选按钮集合 -->
+    <RadioGroup
+        android:id="@+id/parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:orientation="horizontal">
+
+        <!-- 设置第一个按钮被选中 -->
+        <RadioButton
+            android:id="@+id/student"
+            style="@style/my_radio_button_style"
+            android:checked="true"
+            android:text="@string/student" />
+
+        <RadioButton
+            android:id="@+id/teacher"
+            style="@style/my_radio_button_style"
+            android:text="@string/teacher" />
+
+        <RadioButton
+            android:id="@+id/group"
+            style="@style/my_radio_button_style"
+            android:text="@string/group" />
+
+        <RadioButton
+            android:id="@+id/manager"
+            style="@style/my_radio_button_style"
+            android:layout_marginRight="@dimen/no_margin"
+            android:text="@string/manager" />
+    </RadioGroup>
+
+    <!-- 登录注册按钮，由一个横向线性布局包裹，水平居中 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:background="@drawable/button_round_background"
+            android:text="@string/login_button_text"
+            android:textColor="@color/primary_white"
+            android:textSize="@dimen/normal_text" />
+
+        <Button
+            android:id="@+id/signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_round_background"
+            android:text="@string/register_button_text"
+            android:textColor="@color/primary_white"
+            android:textSize="@dimen/normal_text" />
+    </LinearLayout>
+</LinearLayout>
