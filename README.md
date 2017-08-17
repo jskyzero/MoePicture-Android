@@ -43,3 +43,37 @@ alertDialog.show()
 + BroadcastReceiver：广播接收器
 + ContentProvider：跨应用数据交换标准
 + Intent：沟通桥梁
+
+## Lab4
++ 广播机制就是发射一个包含过滤口令和数据的Intent，注册了口令的接收器就可以接收到。
++ 接受函数只有短暂的存活时间，如果时间长就启用后台服务。
++ 状态栏的提示
+
+## Lab5
++ 桌面小部件
++ 页面切换
+
+## Lab6
++ 服务
++ 多线程
+
+## Lab7
++ SharedPreferences，键值对
++ 文件系统
+
+## Lab8
++ SQLite
++ ContentProvider封装数据
+
+## Lab9
++ HTTP请求处理
++ XML文件解析
++ WIFI/蓝牙
+
+## Lab10
++ NDK / 传感器
++ 地图开发
+
+## 后记
+
+学不起学不起。
