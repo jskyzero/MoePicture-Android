@@ -36,3 +36,10 @@ alertDialog.setTitle("Title").create();
 
 alertDialog.show()
 ```
+
+## Lab3
++ Activity：可视化用户界面
++ Service：后台服务
++ BroadcastReceiver：广播接收器
++ ContentProvider：跨应用数据交换标准
++ Intent：沟通桥梁
