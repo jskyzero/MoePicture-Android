@@ -5,9 +5,11 @@ package moons.moepicture.Models;
 
 import org.w3c.dom.Element;
 
+import java.io.Serializable;
+
 import moons.moepicture.Services.Spider;
 
-public class PictureItem {
+public class PictureItem implements Serializable {
     public enum  UrlType {preview_url, sample_url, jpeg_url};
 
     public String id;

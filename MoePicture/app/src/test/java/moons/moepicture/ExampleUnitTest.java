@@ -22,6 +22,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import moons.moepicture.Models.PictureItem;
+import moons.moepicture.Models.YandeUrl;
 import moons.moepicture.Services.Spider;
 
 import static org.junit.Assert.*;
@@ -64,6 +65,13 @@ public class ExampleUnitTest {
         final String url = "https://files.yande.re/sample/19799cc35390b1aa7cd1ebb332a84a97/yande.re%20405388%20sample%20feet%20nyum%20seifuku%20wet.jpg";
         final String fileName = "yande.re 405388 sample feet nyum seifuku wet.jpg".replaceAll("[^a-zA-Z0-9.-]", "_");
         assertEquals(Spider.getFileNameFromUrl(url), fileName);
+    }
+
+    @Test
+    public void Yande_Url_Test() {
+        YandeUrl yandeUrl = YandeUrl.getPostUrl();
+        assertEquals(yandeUrl.getFinalUrl(), "https://yande.re/post.xml?limit=50&page=1&tags=");
+        assertEquals(yandeUrl.getFinalUrl(), "https://yande.re/post.xml?limit=50&page=2&tags=");
     }
 
 

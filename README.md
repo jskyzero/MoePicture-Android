@@ -6,9 +6,9 @@
 ## TODO
 > TRY TO FINISH IT
 ### v1.0
-- [ ] basic home page can show home post
-- [ ] basic sigle picure view and logic
-- [ ] basic simple notification
+- [x] basic home page can show home post
+- [x] basic sigle picure view and logic
+- [x] basic simple notification
 
 ## LICENSE
 
