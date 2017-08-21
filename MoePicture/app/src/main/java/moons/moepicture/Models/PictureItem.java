@@ -32,8 +32,8 @@ public class PictureItem implements Serializable {
         newPictureItem.preview_url = element.getAttribute("preview_url");
         newPictureItem.sample_url = element.getAttribute("sample_url");
         newPictureItem.jpeg_url = element.getAttribute("jpeg_url");
-        newPictureItem.name = Spider.getFileNameFromUrl(newPictureItem.jpeg_url);
-        newPictureItem.file_name = newPictureItem.name;
+        newPictureItem.file_name = Spider.getFileNameFromUrl(newPictureItem.jpeg_url);
+        newPictureItem.name = newPictureItem.file_name.split("_")[1];
 
         return newPictureItem;
     }

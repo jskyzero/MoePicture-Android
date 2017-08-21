@@ -31,15 +31,27 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.bm.photoview:library:1.4.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.twotoasters.jazzylistview:library:1.2.1'
-    compile 'com.twotoasters.jazzylistview:library-recyclerview:1.2.1'
-    compile 'in.srain.cube:grid-view-with-header-footer:1.0.12'
+//    glide
     compile 'com.github.bumptech.glide:glide:4.0.0'
     compile 'com.android.support:support-v4:25.3.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
-
+//    jazzylistview
+    compile 'com.twotoasters.jazzylistview:library:1.2.1'
+    compile 'com.twotoasters.jazzylistview:library-recyclerview:1.2.1'
+//    photoview
+    compile 'com.bm.photoview:library:1.4.1'
+//    RippleEffect
     compile 'com.github.traex.rippleeffect:library:1.3'
+//    SlideBottomPanel
     compile 'com.github.kingideayou:SlideBottomPanel:1.0.6'
+//    Android-SpinKit
+    compile 'com.github.ybq:Android-SpinKit:1.1.0'
+//    Fresco
+    compile 'com.facebook.fresco:fresco:0.12.0'
+}
+
+repositories {
+    mavenCentral() // jcenter() works as well because it pulls from Maven Central
+    maven { url "https://jitpack.io" }
 }

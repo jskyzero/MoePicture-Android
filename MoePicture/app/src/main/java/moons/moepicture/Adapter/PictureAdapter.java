@@ -2,6 +2,7 @@ package moons.moepicture.Adapter;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 import java.util.zip.Inflater;
@@ -68,20 +70,21 @@ public class PictureAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View recycled, ViewGroup container){
-        final ImageView view;
+        final LinearLayout view;
         if (recycled == null) {
-            view = (ImageView) LayoutInflater.from(context).inflate(R.layout.grid_picture_item, container, false);
+            view = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.grid_picture_item, container, false);
             ((ImageView)view.findViewById(R.id.grid_picture_item)).setClipToOutline(true);
 
         } else {
-            view = (ImageView) recycled;
+            view = (LinearLayout) recycled;
         }
 
         String url = ((PictureItem)getItem(position)).preview_url;
-
+//        ((SimpleDraweeView) view.findViewById(R.id.grid_picture_item)).setImageURI(Uri.parse(url));
         Glide.with(context)
-            .load(url).apply(RequestOptions.centerCropTransform())
-            .into(view);
+                .load(url)
+                .apply(RequestOptions.centerCropTransform())
+                .into((ImageView)view.findViewById(R.id.grid_picture_item));
 
         return view;
     }

@@ -24,6 +24,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.twotoasters.jazzylistview.JazzyGridView;
 import com.twotoasters.jazzylistview.effects.FadeEffect;
 import com.twotoasters.jazzylistview.effects.SlideInEffect;
@@ -72,6 +73,61 @@ public class NewPostsActivity extends AppCompatActivity {
     }
 
 
+    void initialView() {
+        isBusy = false;
+        yandeUrl = YandeUrl.getPostUrl();
+        pictureAdapter = new PictureAdapter(this, new LinkedList<PictureItem>());
+
+        gridView = (JazzyGridView)findViewById(R.id.ImageGrid);
+        gridView.setAdapter(pictureAdapter);
+        gridView.setTransitionEffect(new FadeEffect());
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+        Fresco.initialize(this);
+    };
+
+    void setLiscenter() {
+        gridView.setOnScrollListener( new AbsListView.OnScrollListener() {
+              @Override
+              public void onScroll(AbsListView view, int firstVisibleItem,
+                                   int visibleItemCount, int totalItemCount) {
+                  if (canUpdate &&  !isBusy && (firstVisibleItem+visibleItemCount) == totalItemCount) {
+                      new GetUrlContentTask().execute(yandeUrl.getFinalUrl());
+                  }
+              }
+
+              @Override
+              public void onScrollStateChanged(AbsListView view, int scrollState) {
+                  //listview滚动时会执行这个方法，这儿调用加载数据的方法。
+              }
+          }
+        );
+
+        gridView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(NewPostsActivity.this, SingleItemActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("PictureItem", pictureAdapter.getList().get(i));
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        }
+        );
+    }
+
+    void initialUpdate(String tags) {
+        canUpdate = true;
+
+        yandeUrl.setTags(tags);
+        pictureAdapter.clearList();
+        new GetUrlContentTask().execute(yandeUrl.getFinalUrl());
+
+        findViewById(R.id.loading).setVisibility(View.VISIBLE);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.new_post_menu, menu);
@@ -112,60 +168,9 @@ public class NewPostsActivity extends AppCompatActivity {
     }
 
 
-    void initialView() {
-        isBusy = false;
-        yandeUrl = YandeUrl.getPostUrl();
-        pictureAdapter = new PictureAdapter(this, new LinkedList<PictureItem>());
-
-        gridView = (JazzyGridView)findViewById(R.id.ImageGrid);
-        gridView.setAdapter(pictureAdapter);
-        gridView.setTransitionEffect(new FadeEffect());
-
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-
-    };
-
-    void setLiscenter() {
-        gridView.setOnScrollListener( new AbsListView.OnScrollListener() {
-              @Override
-              public void onScroll(AbsListView view, int firstVisibleItem,
-                                   int visibleItemCount, int totalItemCount) {
-                  if (canUpdate &&  !isBusy && (firstVisibleItem+visibleItemCount) == totalItemCount) {
-                      new GetUrlContentTask().execute(yandeUrl.getFinalUrl());
-                  }
-              }
-
-              @Override
-              public void onScrollStateChanged(AbsListView view, int scrollState) {
-                  //listview滚动时会执行这个方法，这儿调用加载数据的方法。
-              }
-          }
-        );
-
-        gridView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(NewPostsActivity.this, SingleItemActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("PictureItem", pictureAdapter.getList().get(i));
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        }
-        );
-    }
-
-    void initialUpdate(String tags) {
-        canUpdate = true;
-
-        yandeUrl.setTags(tags);
-        pictureAdapter.clearList();
-        new GetUrlContentTask().execute(yandeUrl.getFinalUrl());
-    }
-
-
     void UpdataGridView(String result) {
+        findViewById(R.id.loading).setVisibility(View.INVISIBLE);
+
         try {
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
                             .parse(new InputSource(new ByteArrayInputStream(result.getBytes("utf-8"))));

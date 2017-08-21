@@ -1,44 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/colorPrimary">
 
-        <com.bm.library.PhotoView
-            android:id="@+id/image"
+    <me.next.slidebottompanel.SlideBottomPanel
+        android:id="@+id/sbv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:sbp_title_height_no_display="55dp"
+        app:sbp_panel_height="380dp"
+        app:sbp_hide_panel_title="false"
+        app:sbp_background_layout="@layout/activity_single_item_bg">
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            />
+            android:layout_height="380dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                    <ImageView
+                        android:id="@+id/share"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:src="@drawable/ic_share_black_48dp"/>
+                    <TextView
+                        android:id="@+id/head_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:text="Orz"
+                        android:textSize="12pt"/>
+                    <ImageView
+                        android:id="@+id/download"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:src="@drawable/ic_file_download_black_48dp"/>
+                </LinearLayout>
+                <ListView
+                    android:id="@+id/list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </FrameLayout>
+    </me.next.slidebottompanel.SlideBottomPanel>
 
-            <!--<com.andexert.library.RippleView-->
-                <!--android:id="@+id/share"-->
-                <!--style="@style/RippleViewStyle">-->
-                <!--<ImageView-->
-                    <!--style="@style/RippleViewImageStyle"-->
-                    <!--android:src="@android:drawable/ic_menu_share" />-->
-            <!--</com.andexert.library.RippleView>-->
-
-            <!--<com.andexert.library.RippleView-->
-                <!--android:id="@+id/download"-->
-                <!--style="@style/RippleViewStyle">-->
-                <!--<ImageView-->
-                    <!--style="@style/RippleViewImageStyle"-->
-                    <!--android:src="@android:drawable/stat_sys_download"-->
-                    <!--android:background="@color/colorAccent"/>-->
-            <!--</com.andexert.library.RippleView>-->
-        </LinearLayout>
-    </LinearLayout>
+</LinearLayout>
 
