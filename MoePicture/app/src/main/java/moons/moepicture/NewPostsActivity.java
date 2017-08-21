@@ -7,17 +7,25 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.twotoasters.jazzylistview.JazzyGridView;
+import com.twotoasters.jazzylistview.effects.FadeEffect;
 import com.twotoasters.jazzylistview.effects.SlideInEffect;
 
 import org.w3c.dom.Document;
@@ -60,17 +68,62 @@ public class NewPostsActivity extends AppCompatActivity {
         initialView();
         setLiscenter();
 
-        new GetUrlContentTask().execute(yandeUrl.getFinalUrl());
+        initialUpdate("");
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.new_post_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView =
+                (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener( new SearchView.OnQueryTextListener(){
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(newText.isEmpty()) {
+                    initialUpdate("");
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                initialUpdate(query);
+                return true;
+            }
+        });
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // 处理动作按钮的点击事件
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                Toast.makeText(this, "SEARCH", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     void initialView() {
         isBusy = false;
-        canUpdate = true;
         yandeUrl = YandeUrl.getPostUrl();
         pictureAdapter = new PictureAdapter(this, new LinkedList<PictureItem>());
+
         gridView = (JazzyGridView)findViewById(R.id.ImageGrid);
         gridView.setAdapter(pictureAdapter);
-        gridView.setTransitionEffect(new SlideInEffect());
+        gridView.setTransitionEffect(new FadeEffect());
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
     };
 
     void setLiscenter() {
@@ -86,9 +139,6 @@ public class NewPostsActivity extends AppCompatActivity {
               @Override
               public void onScrollStateChanged(AbsListView view, int scrollState) {
                   //listview滚动时会执行这个方法，这儿调用加载数据的方法。
-
-                  // gridView.setSelection(lastItem - 1);
-                  // 设置listview的当前位置，如果不设置每次加载完后都会返回到list的第一项。
               }
           }
         );
@@ -106,12 +156,19 @@ public class NewPostsActivity extends AppCompatActivity {
         );
     }
 
+    void initialUpdate(String tags) {
+        canUpdate = true;
+
+        yandeUrl.setTags(tags);
+        pictureAdapter.clearList();
+        new GetUrlContentTask().execute(yandeUrl.getFinalUrl());
+    }
+
 
     void UpdataGridView(String result) {
         try {
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder= dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(new InputSource(new ByteArrayInputStream(result.getBytes("utf-8"))));
+            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+                            .parse(new InputSource(new ByteArrayInputStream(result.getBytes("utf-8"))));
 
             NodeList nList = doc.getElementsByTagName("post");
             for (int i = 0; i < nList.getLength(); i++) {

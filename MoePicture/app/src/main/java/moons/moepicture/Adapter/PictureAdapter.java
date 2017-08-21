@@ -38,6 +38,8 @@ public class PictureAdapter extends BaseAdapter {
         return pictureList;
     }
 
+    public void clearList() { pictureList.clear(); return;}
+
     public boolean isListEmpty()
     {
         return pictureList == null;
@@ -69,6 +71,8 @@ public class PictureAdapter extends BaseAdapter {
         final ImageView view;
         if (recycled == null) {
             view = (ImageView) LayoutInflater.from(context).inflate(R.layout.grid_picture_item, container, false);
+            ((ImageView)view.findViewById(R.id.grid_picture_item)).setClipToOutline(true);
+
         } else {
             view = (ImageView) recycled;
         }

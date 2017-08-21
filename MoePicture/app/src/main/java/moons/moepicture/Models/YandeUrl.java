@@ -17,6 +17,10 @@ public class YandeUrl {
     public String type;
     public String response_type;
 
+    public void setTags(String tags) {
+        this.tags = tags;
+        this.page = 1;
+    }
 
 
     public static YandeUrl getPostUrl() {

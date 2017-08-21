@@ -10,7 +10,7 @@
 - [x] basic sigle picure view and logic
 - [x] basic simple notification
 ### v1.1
-- [ ] search function
+- [x] search function
 - [ ] picture info
 - [ ] hamburger menu 
 
