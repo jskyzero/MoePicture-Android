@@ -86,6 +86,8 @@ public class NewPostsActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         Fresco.initialize(this);
+
+//        new DrawerBuilder().withActivity(this).build();
     };
 
     void setLiscenter() {

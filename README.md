@@ -11,8 +11,8 @@
 - [x] basic simple notification
 ### v1.1
 - [x] search function
-- [ ] picture info
-- [ ] hamburger menu 
+- [x] picture info
+- [x] hamburger menu 
 
 ## LICENSE
 
