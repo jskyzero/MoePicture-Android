@@ -12,7 +12,11 @@
 ### v1.1
 - [x] search function
 - [x] picture info
-- [x] hamburger menu 
+- [x] hamburger menu
+### v1.2
+- [ ] search auto complete
+- [ ] setting page
+- [ ] farvate tags page
 
 ## LICENSE
 
